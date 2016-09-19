@@ -3,12 +3,38 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!--  
+	直接引入配置文件  
 	<properties resource="jdbc.properties"/>
-	<typeAliases>
+	一下是配置配置文件
+	-->
+	<properties>
+		<property name="jdbc.driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbc.url" value="jdbc:mysql://localhost:3306/db_mybatis"/>
+		<property name="jdbc.username" value="root"/>
+		<property name="jdbc.password" value="123456"/>
+	</properties>
+	<!--
+	一个一个的配置别名
+	 <typeAliases>
 		<typeAlias alias="Student" type="com.java1234.model.Student"/>
+	</typeAliases> 
+	一下是整体配置别名
+	-->
+	<typeAliases>
+		<package name="com.java1234.model"/>
 	</typeAliases>
-	<environments default="development">
+	<environments default="test">
 		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	<environment id="test">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="${jdbc.driverClassName}" />
@@ -19,6 +45,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/java1234/mappers/StudentMapper.xml" />
+		<!-- 引入映射文件的三种方式 -->
+		<!-- <mapper resource="com/java1234/mappers/StudentMapper.xml" /> -->
+		<!-- <mapper class="com.java1234.mappers.StudentMapper"/> -->
+		<package name="com.java1234.mappers"/>
 	</mappers>
 </configuration>
