@@ -5,6 +5,7 @@ public class Student {
 	private Integer id;
 	private String name;
 	private Integer age;
+	private Address address;
 	
 	
 	
@@ -28,11 +29,10 @@ public class Student {
 		this.age = age;
 	}
 	
-	
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", address=" + address + "]";
 	}
 
 
@@ -53,6 +53,16 @@ public class Student {
 	}
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+
+	public Address getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	

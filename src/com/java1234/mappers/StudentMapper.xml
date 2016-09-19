@@ -3,12 +3,56 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java1234.mappers.StudentMapper">
-
+	<!-- 配置可以模块化1
 	<resultMap type="Student" id="StudentResult">
 		<id property="id" column="id"/>
 		<result property="name" column="name"/>
 		<result property="age" column="age"/>
+		
+		<result property="address.id" column="addressId"/>
+		<result property="address.sheng" column="sheng"/>
+		<result property="address.shi" column="shi"/>
+		<result property="address.qu" column="qu"/>
 	</resultMap>
+	-->
+	<!-- 配置可以模块化2 
+	<resultMap type="Address" id="AddressResult">
+		<result property="id" column="id"/>
+		<result property="sheng" column="sheng"/>
+		<result property="shi" column="shi"/>
+		<result property="qu" column="qu"/>
+	</resultMap>
+	<resultMap type="Student" id="StudentResult">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="age" column="age"/>
+		<association property="address" column="address" resultMap="AddressResult" />
+	</resultMap>
+	-->
+	<!-- 配置可以模块化3 
+	<resultMap type="Student" id="StudentResult">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="age" column="age"/>
+		<association property="address" javaType="Address">
+			<result property="id" column="id"/>
+			<result property="sheng" column="sheng"/>
+			<result property="shi" column="shi"/>
+			<result property="qu" column="qu"/>
+		</association>
+	</resultMap>
+	-->
+	<!-- 配置可以模块化4 -->
+	<resultMap type="Student" id="StudentResult">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="age" column="age"/>
+		<association property="address" column="id" select="com.java1234.mappers.AddressMapper.findById"></association>
+	</resultMap>
+	
+	<select id="findStudentWithAddress" resultMap="StudentResult" parameterType="Integer">
+		select * from t_student t1,t_address t2 where t1.addressId=t2.id and t1.id=#{id}
+	</select>
 
 	<insert id="add" parameterType="Student"  >
 		insert into t_student values(null,#{name},#{age})
