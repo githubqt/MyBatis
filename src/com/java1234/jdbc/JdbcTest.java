@@ -1,4 +1,4 @@
-package cn.java1234.jdbc;
+package com.java1234.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,9 +20,9 @@ public class JdbcTest {
 	private static JdbcTest JdbcTest;
 	private Connection connection;
 	private String driver = "com.mysql.jdbc.Driver";
-	private String url="jdbc:mysql://localhost/db_mybatis?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false";
+	private String url="jdbc:mysql://localhost/mybatis?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false";
 	private String userName = "root";
-	private String pwd = "zx@wvpyym1";
+	private String pwd = "123456";
 
 
 	private JdbcTest(){
