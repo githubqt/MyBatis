@@ -30,3 +30,4 @@
 [main] INFO com.java1234.service.StudentTest - 查询年级(带学生)
 [main] INFO com.java1234.service.StudentTest - 查询年级(带学生)
 [main] INFO com.java1234.service.StudentTest - 查询年级(带学生)
+[main] INFO com.java1234.service.StudentTest - 查询学生(带地址)
